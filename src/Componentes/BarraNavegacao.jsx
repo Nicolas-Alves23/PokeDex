@@ -13,18 +13,7 @@ export function BarraNavegacao(){
                     Home
                 </li>
                 </Link>
-                <Link to='series'>
-                <li>
-                    <span className="material-symbols-outlined">tv</span>
-                    Serie
-                </li>
-                </Link>
-                <Link to='perfil'>
-                <li>
-                <span className="material-symbols-outlined">person</span>
-                    Perfil
-                </li>
-                </Link>
+
             </ul>
         </nav>
     )

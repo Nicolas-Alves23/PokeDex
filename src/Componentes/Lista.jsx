@@ -70,7 +70,7 @@ useEffect(() => {
   }
 
   return (
-    <div className={style.container}>
+    <main className={style.container}>
       <figure>
         {pokemons.map((pokemon) => (
           <Card
@@ -84,6 +84,6 @@ useEffect(() => {
       {selectedPokemon && (
         <Modal pokemon={selectedPokemon} onClose={handleCloseModal} />
       )}
-    </div>
+    </main>
   );
 }
