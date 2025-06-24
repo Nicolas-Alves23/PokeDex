@@ -1,0 +1,30 @@
+.conteiner_main_perfil{
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: Poppins;    
+    height: 80.5vh;
+    width: 100vw;
+    align-items: center;
+}
+.ft_perfil img{
+    width: 250px;
+}
+
+.ft_perfil{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.efeito_div{
+    width: 100%;
+}
+
+.text_name_user_and_about h1{
+    color: azure;
+    font-family: Poppins;
+    font-weight: 300;
+    text-align: center;
+}

@@ -1,0 +1,26 @@
+.conteiner_header {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+
+:root {
+    --gradient: linear-gradient(   
+        to right, 
+        rgba(166, 0, 0, 1) 35%, 
+        rgba(255, 0, 0, 0.83) 100%
+        )
+  }
+  
+  .linear_gradient_in_text{
+    background-image: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 80px;
+  } 
+

@@ -1,0 +1,105 @@
+.modalback{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+}
+
+.modalConteiner{
+    background-color: rgb(28,28,28);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    line-height: 20px;
+    max-width: 90%;
+    max-height: 95%;
+    color: white;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+
+}
+
+.modalheader{
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 100%;
+}
+
+
+.imgdetalhes{
+    display: flex;
+    gap: 20px;
+}
+
+.imgdetalhes p{
+    margin-left: 20px;
+}
+
+.imgmodal{
+    width: 40%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.moviedetails{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    background-color: rgba(240, 248, 255, 0);
+     border: 50px;
+     color: aliceblue;
+     font-size: 14px;
+     padding: 15px;
+     border: none;
+     cursor: pointer;
+     align-self: flex-start;
+}
+
+.numbers{
+    color:   rgba(166, 0, 0, 1);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.numbers_about_film{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.text_in_modal{
+    height: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.418);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.text_in_modal h2{
+    color: azure;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    margin-bottom: 30px;
+    font-size: 45px;
+    margin-right: 10px;
+}

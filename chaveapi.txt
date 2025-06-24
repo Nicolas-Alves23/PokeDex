@@ -1,0 +1,16 @@
+af26cce282aecf5c6cc39a264f29d0a7
+
+
+
+---LINK PARA PEGAR AS SERIES
+const API_key = 'af26cce282aecf5c6cc39a264f29d0a7';
+const API_URL = 'https://api.themoviedb.org/3';
+ 
+export function Series() {
+    const [series, setSeries] = useState([]);
+    const [selectedSerie, setSelectedSerie] = useState(null);
+ 
+    useEffect(() => {
+        axios.get(`${API_URL}/tv/popular?api_key=${API_key}&
+ 
+
