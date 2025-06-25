@@ -1,12 +1,10 @@
 import estilo from './Card.module.css';
-import { motion } from 'framer-motion'
-import { Link } from "react-router-dom"
-
-export function Card({ pokemon, onOpenModal }) {
+import { motion } from 'framer-motion' // usando o motion para efeito
+// Estilizaçãod dos cards do site
+export function Card({ pokemon }) {
     return (
-        <Link to="perfil">
-            <motion.div
 
+            <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
@@ -19,6 +17,5 @@ export function Card({ pokemon, onOpenModal }) {
                     </div>
                 </div>
             </motion.div>
-        </Link>
     );
 }

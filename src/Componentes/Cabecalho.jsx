@@ -1,5 +1,5 @@
 import estilo from './Cabecalho.module.css';
-
+// área do texto logo abaixo do 'Home'
 export function Cabecalho() {
     return (
         <header className={estilo.conteiner_header}>

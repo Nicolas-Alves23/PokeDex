@@ -11,14 +11,13 @@
     font-family: "Poppins", sans-serif;
     font-weight: 200;
     font-style: normal;
-    cursor: pointer;
     border: 1px solid rgb(54, 54, 54);
 }
 
 
 
 .conteiner:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition: 0.5s ease;
 }
 
@@ -40,5 +39,10 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    transition: 0.5s;
 }
 
+.imagem_jpg:hover{
+    transform: scale(1.2);
+    transition: 0.5s;
+}
