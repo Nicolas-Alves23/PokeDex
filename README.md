@@ -9,6 +9,13 @@ Atividade Extra para utilizarmos o React consumindo uma API pública
 - Barra de Pesquisa 
 - Visualização dos Pokémons
 
+### Após avaliação
+
+Desejo atualizar com algumas funcionalidades diversas. Exemplos:
+
+- Página com Pokémon desejado 
+- Card de Pokémon mais bonito 
+- Estudar a API de maneira mais profunda
 
 
 
