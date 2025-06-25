@@ -1,15 +1,31 @@
-.conteiner{
-    opacity: 0;
-    transform: scale(0.98);
-    transition:  opacity 0.5s ease, transform 0.5s ease;
+.conteine{
+    min-height: 100vh;
+    background-color: #000; 
+
 }
 
-.container.visible{
-    opacity: 1;
-    transform: scale(1);
-}
 
 figure{
-    background-color: #000; 
-    min-height: 100vh; 
+ background-color: #000; 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1rem; 
+  width: 100vw;
+    margin-left: 40px;
+}
+
+.filtros {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+
+}
+
+.filtros input,
+.filtros select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid red;
 }

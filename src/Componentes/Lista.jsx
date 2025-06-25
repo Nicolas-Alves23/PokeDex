@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import { Loading } from "./Loading";
 import { Card } from "./Card";
-import { Modal } from "./Modal";
 import axios from "axios";
 import style from "./Lista.module.css";
 
 const API_URL = 'https://pokeapi.co/api/v2/';
-const API_key = 'af26cce282aecf5c6cc39a264f29d0a7';
 
 export function Lista() {
   const [pokemons, setPokemons] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('todos');
 
-  const [apiLoaded, setApiLoaded] = useState(false); // API carregada
-  const [timerDone, setTimerDone] = useState(false); // Tempo mínimo de loading concluído
+  const [apiLoaded, setApiLoaded] = useState(false);
+  const [timerDone, setTimerDone] = useState(false);
 
   useEffect(() => {
-    // Tempo fixo de loading (3 segundos)
     const timer = setTimeout(() => {
       setTimerDone(true);
     }, 3000);
@@ -24,66 +24,90 @@ export function Lista() {
     return () => clearTimeout(timer);
   }, []);
 
-useEffect(() => {
-  const fetchpokemons = async () => {
-    try {
-      // Passo 1: Buscar lista dos primeiros 120 pokémons
-      const response = await axios.get(`${API_URL}pokemon?limit=120`);
-      const results = response.data.results; // [{ name, url }]
+  useEffect(() => {
+    const fetchpokemons = async () => {
+      try {
+        const response = await axios.get(`${API_URL}pokemon?limit=120`);
+        const results = response.data.results;
 
-      // Passo 2: Buscar detalhes de cada pokémon individualmente
-      const pokemonDetails = await Promise.all(
-        results.map(async (pokemon) => {
-          const res = await axios.get(pokemon.url);
-          return {
-            id: res.data.id,
-            name: res.data.name,
-            image: res.data.sprites.front_default,
-            types: res.data.types.map(t => t.type.name),
-            stats: res.data.stats,
-          };
-        })
+        const pokemonDetails = await Promise.all(
+          results.map(async (pokemon) => {
+            const res = await axios.get(pokemon.url);
+            return {
+              id: res.data.id,
+              name: res.data.name,
+              image: res.data.sprites.front_default,
+              types: res.data.types.map(t => t.type.name),
+              stats: res.data.stats,
+            };
+          })
+        );
+
+        setPokemons(pokemonDetails);
+        setFilteredPokemons(pokemonDetails);
+
+        const allTypes = new Set();
+        pokemonDetails.forEach(p => p.types.forEach(t => allTypes.add(t)));
+        setTypes(['todos', ...Array.from(allTypes)]);
+      } catch (error) {
+        console.log('Erro ao carregar pokémons', error);
+      } finally {
+        setApiLoaded(true);
+      }
+    };
+
+    fetchpokemons();
+  }, []);
+
+  useEffect(() => {
+    let filtered = pokemons;
+
+    if (selectedType !== 'todos') {
+      filtered = filtered.filter(pokemon =>
+        pokemon.types.includes(selectedType)
       );
-
-      setPokemons(pokemonDetails);
-    } catch (error) {
-      console.log('Erro ao carregar pokémons', error);
-    } finally {
-      setApiLoaded(true);
     }
-  };
 
-  fetchpokemons();
-}, []);
+    if (searchTerm.trim() !== '') {
+      filtered = filtered.filter(pokemon =>
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
 
-  const handleOpenModal = (pokemon) => {
-    setSelectedPokemon(pokemon);
-  };
+    setFilteredPokemons(filtered);
+  }, [searchTerm, selectedType, pokemons]);
 
-  const handleCloseModal = () => {
-    setSelectedPokemon(null);
-  };
-
-  // Enquanto a API não carregou ou o timer não terminou, mostra o Loading
   if (!apiLoaded || !timerDone) {
     return <Loading />;
   }
 
   return (
-    <main className={style.container}>
+    <main className={style.conteine}>
+      <div className={style.filtros}>
+        <input
+          type="text"
+          placeholder="Buscar por nome"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <select
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+        >
+          {types.map(type => (
+            <option key={type} value={type}>{type}</option>
+          ))}
+        </select>
+      </div>
+
       <figure>
-        {pokemons.map((pokemon) => (
+        {filteredPokemons.map((pokemon) => (
           <Card
             key={pokemon.id}
             pokemon={pokemon}
-            onOpenModal={handleOpenModal}
           />
         ))}
       </figure>
-
-      {selectedPokemon && (
-        <Modal pokemon={selectedPokemon} onClose={handleCloseModal} />
-      )}
     </main>
   );
 }
